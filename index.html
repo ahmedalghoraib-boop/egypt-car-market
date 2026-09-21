@@ -7,6 +7,8 @@ body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0
 .wrap{max-width:860px;margin:0 auto;padding:24px}
 h1{font-size:1.4rem} h2{border-bottom:1px solid #2a2f3a;padding-bottom:6px;margin-top:36px}
 .meta{color:#8a93a5;font-size:.85rem}
+.meta{unicode-bidi:plaintext;direction:ltr}
+.meta.ar{direction:rtl;unicode-bidi:plaintext}
 .card{background:#171b22;border:1px solid #262c38;border-radius:10px;padding:12px 14px;margin:10px 0}
 .card .price{color:#4ade80;font-weight:700}
 .card a{color:#7cc4ff;text-decoration:none;word-break:break-all}
@@ -62,7 +64,7 @@ function card(it){
   const tags = [it.transmission && it.transmission.toUpperCase(), it.year && String(it.year), it.km && kmFmt, it.location, it.status !== "active" ? it.status : ""].filter(Boolean).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("");
   div.innerHTML = `<div><b>${escapeHtml(it.title)}</b> — <span class="price">${it.price ? it.price.toLocaleString() + " EGP" : "—"}</span></div>
     <div class="tagrow">${tags}</div>
-    ${it.condition ? `<div class="meta">${escapeHtml(it.condition)}</div>` : ""}
+${it.condition ? `<div class="meta${isArabic(it.condition) ? " ar" : ""}" dir="${isArabic(it.condition) ? "rtl" : "auto"}">${escapeHtml(it.condition)}</div>` : ""}
     <div>${it.platform ? `<span class="tag">source: ${escapeHtml(it.platform)}</span>` : ""} ${it.url ? `<a href="${it.url}" target="_blank">view listing →</a>` : ""}</div>
     ${it.seller_name ? `<div class="meta">☎ contact: ${escapeHtml(it.seller_name)}${it.seller_phone ? " · " + escapeHtml(it.seller_phone) : " (message via platform)"}</div>` : ""}`;
   return div;
@@ -74,6 +76,7 @@ function fmtDate(iso){
   let h = cairo.getHours(); const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
   return `${cairo.getDate()}/${p(cairo.getMonth()+1)}/${cairo.getFullYear()} ${p(h)}:${p(cairo.getMinutes())} ${ap}`;
 }
+function isArabic(s){return /[\u0600-\u06FF]/.test(s || "")}
 function escapeHtml(s){return (s||"").toString().replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 load();
 </script>
