@@ -58,11 +58,12 @@ async function load(){
 function card(it){
   const div = document.createElement("div");
   div.className = "card" + (it.bad ? " bad" : it.pick ? " pick" : "");
-  const tags = [it.transmission && it.transmission.toUpperCase(), it.year, it.location, it.km ? it.km+"km" : "", it.status !== "active" ? it.status : ""].filter(Boolean).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("");
+  const kmFmt = it.km ? it.km.toLocaleString("en-US") + "km" : "";
+  const tags = [it.transmission && it.transmission.toUpperCase(), it.year && String(it.year), it.km && kmFmt, it.location, it.status !== "active" ? it.status : ""].filter(Boolean).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("");
   div.innerHTML = `<div><b>${escapeHtml(it.title)}</b> — <span class="price">${it.price ? it.price.toLocaleString() + " EGP" : "—"}</span></div>
-    <div>${tags} <span class="tag">${escapeHtml(it.platform)}</span></div>
+    <div class="tagrow">${tags}</div>
     ${it.condition ? `<div class="meta">${escapeHtml(it.condition)}</div>` : ""}
-    ${it.url ? `<a href="${it.url}" target="_blank">view listing →</a>` : ""}`;
+    <div>${it.platform ? `<span class="tag">source: ${escapeHtml(it.platform)}</span>` : ""} ${it.url ? `<a href="${it.url}" target="_blank">view listing →</a>` : ""}</div>`;
   return div;
 }
 function fmtDate(iso){
