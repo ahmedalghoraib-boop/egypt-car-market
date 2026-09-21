@@ -61,7 +61,7 @@ function card(it){
   const div = document.createElement("div");
   div.className = "card" + (it.bad ? " bad" : it.pick ? " pick" : "");
   const kmFmt = it.km ? it.km.toLocaleString("en-US") + "km" : "";
-  const tags = [it.transmission && it.transmission.toUpperCase(), it.year && String(it.year), it.km && kmFmt, it.location, it.status !== "active" ? it.status : ""].filter(Boolean).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("");
+  const tags = [it.transmission && it.transmission.toUpperCase(), it.year && String(it.year), it.cc && it.cc+"cc", it.km && kmFmt, it.color, it.body, it.location, it.status !== "active" ? it.status : ""].filter(Boolean).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("");
   div.innerHTML = `<div><b>${escapeHtml(it.title)}</b> — <span class="price">${it.price ? it.price.toLocaleString() + " EGP" : "—"}</span></div>
     <div class="tagrow">${tags}</div>
 ${it.condition ? `<div class="meta${isArabic(it.condition) ? " ar" : ""}" dir="${isArabic(it.condition) ? "rtl" : "auto"}">${escapeHtml(it.condition)}</div>` : ""}

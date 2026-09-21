@@ -33,7 +33,9 @@
    "status": "active",
    "first_seen": "2026-09-20",
    "seller_name": "Mahmoud Yehia Mohammad",
-   "seller_phone": null
+   "seller_phone": null,
+   "body": null,
+   "model_ar": "1998‎"
   },
   {
    "model_key": "astra",
@@ -48,7 +50,12 @@
    "km": 347000,
    "pick": true,
    "status": "active",
-   "first_seen": "2026-09-19"
+   "first_seen": "2026-09-19",
+   "body": "سيدان",
+   "make": "أوبل",
+   "model_ar": "أسترا",
+   "color": "رمادى",
+   "cc": "1600"
   },
   {
    "model_key": "sonic",
@@ -62,7 +69,12 @@
    "transmission": "auto",
    "km": null,
    "status": "active",
-   "first_seen": "2026-09-19"
+   "first_seen": "2026-09-19",
+   "body": "سيدان",
+   "make": "شيفروليه",
+   "model_ar": "سونيك",
+   "color": "بنى",
+   "cc": "1600"
   },
   {
    "model_key": "sonic",
@@ -76,7 +88,12 @@
    "transmission": "auto",
    "km": null,
    "status": "active",
-   "first_seen": "2026-09-19"
+   "first_seen": "2026-09-19",
+   "body": "سيدان",
+   "make": "شيفروليه",
+   "model_ar": "سونيك",
+   "color": "أسود",
+   "cc": "2000"
   },
   {
    "model_key": "cruze",
@@ -158,12 +175,17 @@
    "title": "Honda Civic 2000",
    "condition": "registration valid until 11/2028",
    "location": "Alexandria (Camp Caesar)",
-   "transmission": "manual",
+   "transmission": "auto",
    "km": null,
    "pick": false,
    "bad": false,
    "status": "active",
-   "first_seen": "2026-09-19"
+   "first_seen": "2026-09-19",
+   "body": "سيدان",
+   "make": "هوندا",
+   "model_ar": "سيفيك",
+   "color": "أصفر",
+   "cc": "1500"
   },
   {
    "model_key": "astra",
@@ -193,13 +215,14 @@
    "condition": "اوبل استرا برازيلى ٢٠٠٤\nرخصه ٢٠٢٨ باسمى\nرشه بالكامل بسبب الكلح.\nعداد ٣٩٠\nلا تحتاج مصاريف ولا حتى سيرفيس كاوتش من شهر و بطاريه جديده.\n١٦٠٠ اوتوماتيك",
    "location": "Cairo",
    "transmission": "auto",
-   "km": 390000,
+   "km": "٣٩٠",
    "pick": false,
    "bad": false,
    "status": "active",
    "first_seen": "2026-09-20",
    "seller_name": "Joseph Tharwat Hanna",
-   "seller_phone": null
+   "seller_phone": null,
+   "body": null
   },
   {
    "model_key": "astra",
@@ -215,7 +238,8 @@
    "pick": true,
    "bad": false,
    "status": "active",
-   "first_seen": "2026-09-20"
+   "first_seen": "2026-09-20",
+   "body": null
   },
   {
    "model_key": "cruze",
@@ -283,7 +307,12 @@
    "pick": false,
    "bad": false,
    "status": "active",
-   "first_seen": "2026-09-19"
+   "first_seen": "2026-09-19",
+   "body": "سيدان",
+   "make": "شيفروليه",
+   "model_ar": "سونيك",
+   "color": "أسود",
+   "cc": "2000"
   }
  ],
  "flagged": [],
