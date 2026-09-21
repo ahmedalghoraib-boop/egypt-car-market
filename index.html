@@ -62,14 +62,15 @@ function card(it){
   div.innerHTML = `<div><b>${escapeHtml(it.title)}</b> — <span class="price">${it.price ? it.price.toLocaleString() + " EGP" : "—"}</span></div>
     <div>${tags} <span class="tag">${escapeHtml(it.platform)}</span></div>
     ${it.condition ? `<div class="meta">${escapeHtml(it.condition)}</div>` : ""}
-    <a href="${it.url}" target="_blank">view listing →</a>`;
+    ${it.url ? `<a href="${it.url}" target="_blank">view listing →</a>` : ""}`;
   return div;
 }
 function fmtDate(iso){
   const d = new Date(iso);
   const cairo = new Date(d.toLocaleString("en-US",{timeZone:"Africa/Cairo"}));
   const p = n => String(n).padStart(2,"0");
-  return `${cairo.getDate()}/${p(cairo.getMonth()+1)}/${cairo.getFullYear()} ${p(cairo.getHours())}:${p(cairo.getMinutes())}`;
+  let h = cairo.getHours(); const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12;
+  return `${cairo.getDate()}/${p(cairo.getMonth()+1)}/${cairo.getFullYear()} ${p(h)}:${p(cairo.getMinutes())} ${ap}`;
 }
 function escapeHtml(s){return (s||"").toString().replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 load();
