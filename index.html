@@ -63,7 +63,8 @@ function card(it){
   div.innerHTML = `<div><b>${escapeHtml(it.title)}</b> — <span class="price">${it.price ? it.price.toLocaleString() + " EGP" : "—"}</span></div>
     <div class="tagrow">${tags}</div>
     ${it.condition ? `<div class="meta">${escapeHtml(it.condition)}</div>` : ""}
-    <div>${it.platform ? `<span class="tag">source: ${escapeHtml(it.platform)}</span>` : ""} ${it.url ? `<a href="${it.url}" target="_blank">view listing →</a>` : ""}</div>`;
+    <div>${it.platform ? `<span class="tag">source: ${escapeHtml(it.platform)}</span>` : ""} ${it.url ? `<a href="${it.url}" target="_blank">view listing →</a>` : ""}</div>
+    ${it.seller_name ? `<div class="meta">☎ contact: ${escapeHtml(it.seller_name)}${it.seller_phone ? " · " + escapeHtml(it.seller_phone) : " (message via platform)"}</div>` : ""}`;
   return div;
 }
 function fmtDate(iso){
