@@ -21,7 +21,7 @@ footer{margin-top:40px;color:#66708a;font-size:.8rem}
 </style></head>
 <body><div class="wrap">
 <h1>🚗 Egypt Car Market — Live Watch</h1>
-<div class="meta">Budget <b>200k–250k</b> stretch 300k EGP · Civic 1995+ · Cruze 2014+ auto · Astra/Sonic auto · Updated <span id="updated">—</span></div>
+<div class="meta">Budget <b>200k–250k</b> stretch 300k EGP · Searches: <span id="queries"></span> · Updated <span id="updated">—</span> (Cairo time)</div>
 <div id="alerts"></div>
 <div id="content">Loading…</div>
 <footer>Auto-updated every 6h by the watch agent · <a href="https://github.com/ahmedalghoraib-boop/egypt-car-market" style="color:#7cc4ff">source repo</a></footer>
@@ -32,7 +32,10 @@ const NAMES = {astra:"Opel Astra", e36:"BMW E36", civic:"Honda Civic", cruze:"Ch
 async function load(){
   const r = await fetch("listings.json");
   const data = await r.json();
-  document.getElementById("updated").textContent = data.updated || "—";
+  document.getElementById("updated").textContent = data.updated ? fmtDate(data.updated) : "—";
+  const q = document.getElementById("queries"); q.innerHTML =
+    ['honda civic 1995+','bmw e36','opel astra (auto)','chevrolet cruze 2014+ (auto)','chevrolet sonic (auto)']
+    .map(x=>`<span class="tag">${x}</span>`).join("");
   const alerts = document.getElementById("alerts");
   (data.recent||[]).forEach(a => {
     const d = document.createElement("div");
@@ -61,6 +64,12 @@ function card(it){
     ${it.condition ? `<div class="meta">${escapeHtml(it.condition)}</div>` : ""}
     <a href="${it.url}" target="_blank">view listing →</a>`;
   return div;
+}
+function fmtDate(iso){
+  const d = new Date(iso);
+  const cairo = new Date(d.toLocaleString("en-US",{timeZone:"Africa/Cairo"}));
+  const p = n => String(n).padStart(2,"0");
+  return `${cairo.getDate()}/${p(cairo.getMonth()+1)}/${cairo.getFullYear()} ${p(cairo.getHours())}:${p(cairo.getMinutes())}`;
 }
 function escapeHtml(s){return (s||"").toString().replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 load();
