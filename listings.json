@@ -1,0 +1,18 @@
+{
+  "updated": "2026-09-21T22:00:00+03:00",
+  "listings": [
+    {"model_key":"e36","platform":"facebook","url":"https://www.facebook.com/marketplace/item/3503590183151155/","price":250000,"year":1998,"title":"BMW E36 316i — first owner, US import","condition":"never painted, airbags untouched, no accidents, needs light mech+seats","location":"New Cairo","transmission":"manual","km":250000,"pick":true,"status":"active","first_seen":"2026-09-20"},
+    {"model_key":"civic","platform":"facebook","url":"https://www.facebook.com/marketplace/item/994926009578175/","price":235000,"year":1998,"title":"Honda Civic 1998 — معاقين import","condition":"factory outside, interior factory, new tyres, engine+gearbox fine","location":"Alexandria","transmission":"auto","km":null,"pick":true,"status":"active","first_seen":"2026-09-20"},
+    {"model_key":"astra","platform":"dubizzle","url":"https://www.dubizzle.com.eg/ad/opel-astra-2005-ID209022762.html","price":300000,"year":2005,"title":"Opel Astra 2005 automatic","condition":"factory inside & out, 347k km, full maintenance done","location":"Mokattam, Cairo","transmission":"auto","km":347000,"pick":true,"status":"active","first_seen":"2026-09-19"},
+    {"model_key":"sonic","platform":"dubizzle","url":"https://www.dubizzle.com.eg/ad/شيفروليه-سونيك-2012-ID208827934.html","price":330000,"year":2012,"title":"Chevrolet Sonic 2012 — UAE import, first owner","condition":"fully factory, reg to 7/2027","location":"Faisal, Giza","transmission":"auto","km":null,"status":"active","first_seen":"2026-09-19"},
+    {"model_key":"sonic","platform":"dubizzle","url":"https://www.dubizzle.com.eg/ad/شيفروليه-سونيك-2012-ID208936007.html","price":350000,"year":2012,"title":"Chevrolet Sonic 2012 automatic","condition":"clean, factory interior/ceiling/boot/hood, 2 airbags, ABS","location":"Mohandessin, Giza","transmission":"auto","km":null,"status":"active","first_seen":"2026-09-19"},
+    {"model_key":"cruze","platform":"cruze_owners_group","url":"","price":435000,"year":2014,"title":"Chevrolet Cruze 2014 — OVER BUDGET (market floor proof)","condition":"203k km, fully factory, full 200k service, reg 2/2027","location":"Badr City","transmission":"auto","km":203000,"bad":true,"status":"reference","first_seen":"2026-09-20"}
+  ],
+  "flagged": [],
+  "recent": [],
+  "notes": [
+    "Cruze 2014+ automatic floor is 350k–455k EGP (confirmed twice, two platforms) — cannot be had in budget. Rule decision pending: raise budget or drop model.",
+    "SCAM WARNING: FB 'Astra 2016–2020 @ 200–250k' ads = installment-bait (بضمان وظيفه) or rentals mislabeled. Never pay deposits to unseen sellers.",
+    "Sonic: only 2 genuine listings nationally; both above stretch."
+  ]
+}
