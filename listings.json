@@ -3,7 +3,7 @@
  "listings": [
   {
    "model_key": "e36",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/3503590183151155/",
    "price": 250000,
    "year": 1998,
@@ -20,7 +20,7 @@
   },
   {
    "model_key": "civic",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/994926009578175/",
    "price": 235000,
    "year": 1998,
@@ -80,7 +80,7 @@
   },
   {
    "model_key": "cruze",
-   "platform": "cruze_owners_group",
+   "platform": "FB group: ملاك شيفروليه كروز Chevrolet Cruise",
    "url": "",
    "price": 435000,
    "year": 2014,
@@ -97,7 +97,7 @@
   },
   {
    "model_key": "e36",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/1058523209896512/",
    "price": 260000,
    "year": 1997,
@@ -115,7 +115,7 @@
   },
   {
    "model_key": "e36",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/1756070299014351/",
    "price": 270000,
    "year": 1992,
@@ -133,7 +133,7 @@
   },
   {
    "model_key": "e36",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/2060477651563061/",
    "price": 250000,
    "year": 1997,
@@ -167,7 +167,7 @@
   },
   {
    "model_key": "astra",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/1551766360031120/",
    "price": 260000,
    "year": 2004,
@@ -185,7 +185,7 @@
   },
   {
    "model_key": "astra",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/939117291871557/",
    "price": 295000,
    "year": 2004,
@@ -203,7 +203,7 @@
   },
   {
    "model_key": "astra",
-   "platform": "facebook",
+   "platform": "Facebook Marketplace",
    "url": "https://www.facebook.com/marketplace/item/2588855038213973/",
    "price": 280000,
    "year": 2003,
@@ -219,7 +219,7 @@
   },
   {
    "model_key": "cruze",
-   "platform": "cruze_owners_group",
+   "platform": "FB group: ملاك شيفروليه كروز Chevrolet Cruise",
    "url": "",
    "price": 435000,
    "year": 2014,
@@ -237,7 +237,7 @@
   },
   {
    "model_key": "cruze",
-   "platform": "cruze_owners_group",
+   "platform": "FB group: ملاك شيفروليه كروز Chevrolet Cruise",
    "url": "",
    "price": 350000,
    "year": 2013,
