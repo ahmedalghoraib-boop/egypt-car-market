@@ -286,14 +286,15 @@
    "price": 360000,
    "year": 2015,
    "title": "Chevrolet Cruze 2015 automatic — OVER BUDGET",
-   "condition": "-",
+   "condition": "شيفورليه كروز 2015 ماشيه 180 الف راشه برا معاده السقف لسه عاملها عمرة متور متور بحالة ممتازه فيها خبطة بسيطه جدا جدا في الساسيه لا تزكر ومغيرة كبوت وانا مراعي دا في السعر السعر نهاءي 360 الف",
    "location": "El Barajil, Alexandria",
    "transmission": "auto",
-   "km": null,
+   "km": 180000,
    "pick": false,
    "bad": true,
    "status": "reference",
-   "first_seen": "2026-09-19"
+   "first_seen": "2026-09-19",
+   "seller_name": "haslam Abas"
   },
   {
    "model_key": "sonic",
