@@ -2,7 +2,15 @@
 
 Data flow: platform ad page → scrape description → `listings.json` (`condition` field, verbatim) → static page assembly (`index.html` card with `نص البائع حرفياً:` verbatim block) → commit + push to `github.com/ahmedalghoraib-boop/egypt-car-market` main.
 
-## DESCRIPTION PARITY RULE
+## NORMALIZATION RULE (added 2026-09-22 — cross-project standard)
+For every `condition` string entering `listings.json`: collapse triple+ spaces, collapse `\n\s*\n+` → single `\n`, trim ends. The SAME rule must be applied to any copy of the data that later re-enters the repo. If the JSON carries double-blank lines, every rebuild re-emits doubled `<br>` — fix at the data layer, not just the html. (Verified root cause of the 2026-09-22 line-break regression.)
+
+## Format rules for future edits
+- `condition` strings: single `<br>` between lines on render.
+- Price span: band class (pickgood/pickstretch/pickover) + `جنيه` glued via `&nbsp;` with `white-space:nowrap`.
+- Direction: Arabic content blocks `class="note ar" dir="rtl" + unicode-bidi:plaintext`; English-only `dir="auto"`.
+- Button: last child of the card.
+- Parity: verify json `condition` non-empty ↔ page has a verbatim block for that url (normalize `<br>`↔`\n` before compare).
 
 Every card with a seller description must show it **verbatim** (full text, no summary/paraphrase/truncation) under `نص البائع حرفياً:`. Sellers who wrote nothing get no block. Intermediate translations/paraphrase may appear only in the separate descriptive `.note`, never as a substitute for the verbatim block.
 
