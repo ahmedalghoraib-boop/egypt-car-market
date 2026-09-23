@@ -1,0 +1,28 @@
+{
+ "budget_min": 200000,
+ "budget_max": 250000,
+ "stretch": 300000,
+ "models": {
+  "civic": {
+   "min_year": 1995,
+   "transmission": "any"
+  },
+  "e36": {
+   "min_year": null,
+   "transmission": "any"
+  },
+  "astra": {
+   "min_year": null,
+   "transmission": "any"
+  },
+  "cruze": {
+   "min_year": 2014,
+   "transmission": "auto"
+  },
+  "sonic": {
+   "min_year": null,
+   "transmission": "any"
+  }
+ },
+ "note": "crons/searches: edit models/budget here; publisher groups by whatever model_key arrives; add new make via MAKE map fallback 'أخرى'"
+}
