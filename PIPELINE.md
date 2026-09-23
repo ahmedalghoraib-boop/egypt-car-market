@@ -1,3 +1,14 @@
+
+
+## CONTENT-BASED DEDUPE (review finding, mandatory 2026-09-23)
+URL-unique dedupe is insufficient: the same seller post re-listed on another platform (or one ad mirrored at two prices) renders as duplicate cards. On ingest, dedupe also on normalized `condition` text: strip ZWSP/نbsp, collapse whitespace, compare ≥90% token match → treat as the SAME listing (merge platforms into one card, keep both URLs, use the LOWER price as the display price and note the cross-post in the card).
+
+## CIVIC 1992 BAN RE-VERIFICATION (review finding 2026-09-23)
+A later cron/watch pass silently re-added 3 pre-1995 Civic rows + 2 cards after the ban. Root cause: publish-time validation never re-checked the hardest invariant set after the listings batch. STANDING: the Civic<1995 check runs at EVERY publish (json ingest AND render), and `grep -c "Civic 1992" index.html` must be 0 before push — add it to validate steps.
+
+## PARITY — verification normalization standard
+When comparing json `condition` against rendered page, ALWAYS: `<br>`→`
+` both sides, collapse whitespace, strip ZWSP. A "5 of 56" claim style metric is banned — compare per what's rendered (nowrap span contains number+جنيه), `&nbsp;` optional.
 # Pipeline & rules — egypt-car-market
 
 Data flow: platform ad page → scrape description → `listings.json` (`condition` field, verbatim) → static page assembly (`index.html` card with `نص البائع حرفياً:` verbatim block) → commit + push to `github.com/ahmedalghoraib-boop/egypt-car-market` main.
