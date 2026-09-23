@@ -12,6 +12,12 @@ For every `condition` string entering `listings.json`: collapse triple+ spaces, 
 - Button: last child of the card.
 - Parity: verify json `condition` non-empty ↔ page has a verbatim block for that url (normalize `<br>`↔`\n` before compare).
 
+## BUTTON LABELS — never genericize (added 2026-09-23; verified root cause of regression, see end)
+Every Open button shows the EXACT source it opens: `Open: Facebook Marketplace ↗` (Latin — never Arabicized, per user), `Open: <exact group name> ↗` for FB groups, `Open: Dubizzle ↗`, `Open: Hatla2ee ↗`, `Open: OLX ↗`. NEVER replace the specific source with a generic label like «افتح: المصدر». Regressions happen when a bulk pass rewrites anchors by index or re-slices the document mid-loop — that destroys unrelated anchors (verified: the 2026-09-23 slicing bug truncated index.html to 48 lines and ate card closers; relabel loops are forbidden from mutating the html string inside iteration). The only safe pattern: `re.subn` with a replace-callback building a NEW complete string in ONE pass, then a single `write`, then validation (div/h4 balance + parity) BEFORE any commit. On any catastrophic mismatch, stop hand-patching and restore: `git checkout <last-good-commit> -- index.html`, then retry from a clean tree.
+
+## Language unification rule (user, 2026-09-22)
+Pure Arabic everywhere EXCEPT: (1) seller verbatim descriptions — byte-identical always; (2) brand/model codes Latin (BMW, Honda, Opel, Chevrolet, E36, 316i, Civic, Astra, Cruze, Sonic); (3) the Open-button source labels above (`Facebook Marketplace` stays Latin). Unified titles pattern: Arabic descriptor + Latin brand/model + price span last.
+
 Every card with a seller description must show it **verbatim** (full text, no summary/paraphrase/truncation) under `نص البائع حرفياً:`. Sellers who wrote nothing get no block. Intermediate translations/paraphrase may appear only in the separate descriptive `.note`, never as a substitute for the verbatim block.
 
 Extraction recipes:
