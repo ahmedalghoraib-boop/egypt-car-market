@@ -8,7 +8,7 @@ function __init(){
         cntEl = document.getElementById('cnt');
 
   const fill = (el, key) => {
-    [...new Set(cards.map(c => c.dataset[k]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'))
+    [...new Set(cards.map(c => c.dataset[key]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'))
       .forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; el.appendChild(o); });
   };
   fill(mkEl,'make'); fill(srcEl,'source'); fill(selEl,'seller');
