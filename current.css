@@ -1,0 +1,34 @@
+
+:root{--bg:#fafafa;--card:#fff;--ink:#1a1a1a;--muted:#666;--accent:#0a66c2;--ok:#0a7a35;--warn:#b45309;--bad:#b91c1c;--line:#e5e7eb;}
+*{box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink);line-height:1.55;font-size:16px}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 80px}
+h1{font-size:26px;margin:8px 0 4px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+h2{font-size:20px;margin:34px 0 10px;border-bottom:2px solid var(--line);padding-bottom:6px}
+h3{font-size:16px;margin:20px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.pick{border-inline-start:5px solid #0a7a35}
+.card h4{margin:0 0 8px;font-size:17px}
+.price.pickgood{color:#0a7a35}.price.pickstretch{color:#c99a00}.price.pickover{color:#b91c1c}
+.price.green{color:#0a7a35}
+.price.yellow{color:#c99a00}
+.price.red{color:#b91c1c}
+.price{font-size:22px;font-weight:700;color:var(--accent);white-space:nowrap}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.btn{display:inline-block;background:var(--accent);color:#fff!important;text-decoration:none;padding:6px 14px;border-radius:8px;font-size:14px;margin:6px 4px 0 0}
+.tag{display:inline-block;font-size:12px;background:#eef;border-radius:6px;padding:2px 8px;margin-inline-end:6px;color:#333}
+.warn{background:#fff7ed;border-inline-start:5px solid var(--warn)}
+.bad{background:#fef2f2;border-inline-start:5px solid var(--bad)}
+.note{font-size:13px;color:var(--muted);margin-top:8px;unicode-bidi:plaintext}
+h4{unicode-bidi:isolate;direction:rtl}
+h4 .price{unicode-bidi:isolate;direction:ltr}
+.ar{direction:rtl;unicode-bidi:isolate;font-family:"SF Arabic","Geeza Pro",sans-serif}
+.note.ar{direction:rtl;unicode-bidi:plaintext;text-align:right;font-family:"SF Arabic","Geeza Pro",sans-serif}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{background:#f0f0f0;text-align:left;padding:8px}
+td{border-top:1px solid var(--line);padding:8px;vertical-align:top}
+.chip{display:inline-block;background:#f1f5f9;border-radius:8px;padding:4px 10px;font-size:13px;margin:3px 6px}
+ol{padding-inline-start:22px}
+@media print{.wrap{max-width:none} .card{break-inside:avoid}}
