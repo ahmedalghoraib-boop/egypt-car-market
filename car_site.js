@@ -1,5 +1,5 @@
 // filter/sort for car site (data-* driven)
-window.addEventListener('DOMContentLoaded', () => {
+function __init(){
   const cards = [...document.querySelectorAll('.card')];
   const home = cards.map(c => c.getBoundingClientRect().top + window.scrollY);
   const qEl = document.getElementById('q'), mkEl = document.getElementById('fmake'),
@@ -74,4 +74,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   [qEl,mkEl,srcEl,selEl,sortEl,grpEl].forEach(el => el.addEventListener(el.tagName==='INPUT'&&(el.type==='search')?'input':'change', apply));
   apply();
-});
+}
+
+if (document.readyState !== 'loading') __init(); else window.addEventListener('DOMContentLoaded', __init);
