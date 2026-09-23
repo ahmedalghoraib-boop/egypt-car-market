@@ -48,7 +48,7 @@ def card(r):
     return (f'<div class="card{cls_extra}" data-make="{esc(make_of(r))}" data-model="{esc(r.get("model_key") or "")}" '
             f'data-source="{esc(r.get("platform") or "")}" data-seller="{esc(r.get("seller_name") or "")}" '
             f'data-price="{n}" data-desc="{esc(note[:120])}">'
-            f'<h4>{esc(r.get("title") or "")} — <span class="price {band(n)}" dir="ltr">{price_txt}</span></h4>'
+            f'<h4>{esc(r.get("title") or "")} — <span class="price {band(n)}" dir="rtl">{price_txt}</span></h4>'
             f'<div>{"".join(tags)}</div>{note_html}{contact_html(r)}'
             f'<a class="btn" href="{esc(r.get("url") or "#")}" target="_blank" rel="noopener">{esc(r.get("platform") or "المصدر")} ↗</a></div>')
 
@@ -103,58 +103,14 @@ for mk in sections_order:
     for r in by_make[mk]: parts.append(card(r))
 
 parts.append('''</div>
-<script>
-// filter/sort engine over data-* attributes
-const cards=[...document.querySelectorAll(".card")];
-const mk=document.getElementById("fmake"),src=document.getElementById("fsource"),sel=document.getElementById("fseller");
-const uniq=(k,el,map)=>[...new Set(cards.map(c=>c.dataset[k]).filter(Boolean))].sort().forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;el.appendChild(o)});
-uniq("make",mk);uniq("source",src);uniq("seller",sel);
-let currentCards=[];
-function apply(){
-  const q=document.getElementById("q").value.trim().toLowerCase();
-  const fm=mk.value,fs=src.value,fs=sel.value,sort=document.getElementById("fsort").value,grp=document.getElementById("fgroup").checked;
-  let list=cards.filter(c=>{
-    if(fm&&c.dataset.make!==fm)return false;
-    if(fs&&c.dataset.source!==fs)return false;
-    if(fsel&&c.dataset.seller!==fsel)return false;
-    if(q){const hay=(c.dataset.desc+" "+c.dataset.seller+" "+c.textContent).toLowerCase();
-      if(!q.split(/\\s+/).every(w=>hay.includes(w)))return false;}
-    return true;
-  });
-  function num(c,k){return parseInt(c.dataset[k]||c.dataset[k]||0)||0}
-  const kmv=c=>{const m=c.dataset.desc.match(/(\\d{2,3})[\\s،]?(الف كم|ألف|000)/);return m?parseInt(m[1])*1000:0};
-  const cmp={
-    "price-asc":(a,b)=>(+a.dataset.price||0)-(+b.dataset.price||0),
-    "price-desc":(a,b)=>(+b.dataset.price||0)-(+a.dataset.price||0),
-    "year-desc":(a,b)=>(+(b.querySelector('.tag')?.textContent)||0),
-    "year-asc":(a,b)=>0,
-    "km-asc":(a,b)=>0
-  }[sort];
-  if(cmp)list.sort(cmp);
-  currentCards=list;
-  if(!grp){ // natural DOM order = make sections; hide non-matching only
-    document.querySelectorAll(".card").forEach(c=>c.style.display=list.includes(c)?"":"none");
-  } else {
-    // move cards into per-make buckets at top level, hide empty h2
-    document.querySelectorAll("h2[data-make]").forEach(h=>{
-      const mkName=h.dataset.make; const kids=currentCards.filter(c=>c.dataset.make===mkName);
-      document.querySelectorAll(".card").forEach(c=>{if(c.dataset.make===mkName)c.remove()});
-      kids.forEach(c=>h.after(c)||h.insertAdjacentElement("afterend",c));
-      h.style.display=kids.length?"":"none";
-    });
-  }
-  document.getElementById("cnt").textContent=`${list.length} نتيجة`;
-}
-document.getElementById("q").addEventListener("input",apply);
-mk.addEventListener("change",apply);src.addEventListener("change",apply);
-document.getElementById("fseller").addEventListener("change",apply);
-document.getElementById("fsort").addEventListener("change",apply);
-document.getElementById("fgroup").addEventListener("change",apply);
-apply();
-</script>
+<script>{ENGINE}</script>
 <!-- NOTE: full sort/keyword logic lives in publish_car_site.js (kept simple here) -->
 </body></html>''')
 
 out="\n".join(parts)
+
+ENGINE = open(f"{HERE}/car_site.js", encoding="utf-8").read()
+out = out.replace('{ENGINE}', ENGINE)
+
 open(f"{HERE}/index.html","w",encoding="utf-8").write(out)
 print("published:", len(out), "bytes,", sum(1 for mk in by_make for _ in by_make[mk]), "cards in", len(by_make), "make sections")
