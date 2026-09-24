@@ -28,6 +28,10 @@ def make_of(r): return MAKE.get((r.get("model_key") or "").lower(), "أخرى")
 
 def esc(x): return html.escape(str(x or ""), quote=False)
 
+def clean_note(s):
+    s = str(s or "")
+    return re.sub(r"\[hidden information\]\s*(\.\s*وتم)?", "", s).strip()
+
 def band(n):
     if n <= 250000: return "green"
     if n <= 300000: return "yellow"
@@ -41,7 +45,7 @@ def card(r):
               r.get("year"), r.get("location"), esc(r.get("platform"))]:
         if t: tags.append(f'<span class="tag">{t}</span>')
     km = r.get("km")
-    note = r.get("condition") or ""
+    note = clean_note(r.get("condition"))
     note_html = f'<div class="note ar" dir="rtl"><b>نص البائع حرفياً:</b><br>{esc(note)}</div>' if note else ""
     contact = f'<div class="note">📞 {esc(r.get("seller_name") or "")} {esc(r.get("seller_phone") or "")}</div>' if (r.get("seller_name") or r.get("seller_phone")) else ""
     price_txt = f'{n:,} جنيه' if n else "السعر غير معلن"

@@ -23,7 +23,7 @@ a:hover{text-decoration:underline}
 .bad{background:#fef2f2;border-inline-start:5px solid var(--bad)}
 .note{font-size:13px;color:var(--muted);margin-top:8px;unicode-bidi:plaintext}
 h4{unicode-bidi:isolate;direction:rtl}
-h4 .price{unicode-bidi:isolate;direction:ltr}
+h4 .price{unicode-bidi:isolate;direction:rtl}
 .ar{direction:rtl;unicode-bidi:isolate;font-family:"SF Arabic","Geeza Pro",sans-serif}
 .note.ar{direction:rtl;unicode-bidi:plaintext;text-align:right;font-family:"SF Arabic","Geeza Pro",sans-serif}
 table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
