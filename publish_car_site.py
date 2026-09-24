@@ -41,23 +41,23 @@ def card(r):
     n = int(re.sub(r"[^0-9]", "", str(r.get("price") or 0)) or 0)
     cls_extra = " pick" if r.get("pick") else ""
     tags = []
-    for t in [r.get("transmission") and ("أوتوماتيك" if str(r.get("transmission")).lower()=="auto" else esc(r.get("transmission"))),
-              r.get("year"), r.get("location"), esc(r.get("platform"))]:
+    for t in [r.get("transmission") and ("أوتوماتيك" if str(r.get("transmission")).lower()=="auto" else f'<bdi>{esc(r.get("transmission"))}</bdi>'),
+              r.get("year") and f'<bdi>{r.get("year")}</bdi>', r.get("location"), esc(r.get("platform")) and f'<bdi>{esc(r.get("platform"))}</bdi>']:
         if t: tags.append(f'<span class="tag">{t}</span>')
     km = r.get("km")
     note = clean_note(r.get("condition"))
     note_html = f'<div class="note ar" dir="rtl"><b>نص البائع حرفياً:</b><br>{esc(note)}</div>' if note else ""
-    contact = f'<div class="note">📞 {esc(r.get("seller_name") or "")} {esc(r.get("seller_phone") or "")}</div>' if (r.get("seller_name") or r.get("seller_phone")) else ""
+    contact = f'<div class="note">📞 {esc(r.get("seller_name") or "")} <bdi>{esc(r.get("seller_phone") or "")}</bdi></div>' if (r.get("seller_name") or r.get("seller_phone")) else ""
     price_txt = f'{n:,} جنيه' if n else "السعر غير معلن"
     return (f'<div class="card{cls_extra}" data-make="{esc(make_of(r))}" data-model="{esc(r.get("model_key") or "")}" '
             f'data-source="{esc(r.get("platform") or "")}" data-seller="{esc(r.get("seller_name") or "")}" '
             f'data-price="{n}" data-desc="{esc(note[:120])}">'
-            f'<h4>{esc(r.get("title") or "")} — <span class="price {band(n)}" dir="rtl">{price_txt}</span></h4>'
+            f'<h4><bdi>{esc(r.get("title") or "")}</bdi> — <bdi class="price {band(n)}" dir="rtl">{price_txt}</bdi></h4>'
             f'<div>{"".join(tags)}</div>{note_html}{contact_html(r)}'
             f'<a class="btn" href="{esc(r.get("url") or "#")}" target="_blank" rel="noopener">{esc(r.get("platform") or "المصدر")} ↗</a></div>')
 
 def contact_html(r):
-    return (f'<div class="note">📞 {esc(r.get("seller_name") or "")} {esc(r.get("seller_phone") or "")}</div>'
+    return (f'<div class="note">📞 {esc(r.get("seller_name") or "")} <bdi>{esc(r.get("seller_phone") or "")}</bdi></div>'
             if (r.get("seller_name") or r.get("seller_phone")) else "")
 
 sections_order = ["BMW","Honda","Opel","Chevrolet","Mitsubishi","أخرى"]
@@ -103,7 +103,7 @@ parts = [f'''<!DOCTYPE html>
 
 for mk in sections_order:
     if mk not in by_make: continue
-    parts.append(f'<h2 data-make="{esc(mk)}">{mk} — {len(by_make[mk])} إعلان</h2>')
+    parts.append(f'<h2 data-make="{esc(mk)}"><bdi>{esc(mk)}</bdi> — <bdi>{len(by_make[mk])}</bdi> إعلان</h2>')
     for r in by_make[mk]: parts.append(card(r))
 
 parts.append('''</div>
