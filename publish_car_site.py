@@ -37,6 +37,38 @@ def band(n):
     if n <= 300000: return "yellow"
     return "red"
 
+
+import re as _re
+LOC_AR = [("new cairo","التجمع الخامسة"),("mokattam","المقطم"),("alexandria","الإسكندرية"),("faisal","فيصل"),("mohandessin","المهندسين"),("badr city","مدينة بدر"),("nasr city","مدينة نصر"),("new borg el arab","برج العرب الجديدة"),("borg el arab","برج العرب"),("el-bagour","الباجور"),("monufia","المنوفية"),("10th of ramadan","العاشر من رمضان"),("6th of october","أكتوبر السادس"),("6 october","أكتوبر السادس"),("october","أكتوبر"),("shubra el kheima","شبرا الخيمة"),("shubra","شبرا الخيمة"),("haram","الهرم"),("qalyubia","القليوبية"),("qaha","قها"),("dumyat","دمياط"),("cairo","القاهرة"),("giza","الجيزة"),("obour","العبور"),("maadi","المعادي"),("zayed","الشيخ زايد"),("tagamoa","التجمع"),("mansoura","المنصورة")]
+def arloc(loc):
+    s = str(loc or "").strip()
+    s = re.sub(r"\([^)]*\)", "", s)          # drop parenthetical junk
+    sl = s.lower()
+    for k,v in LOC_AR:
+        s = re.sub(re.escape(k), v, s, flags=re.I)
+    # drop residual Latin words (e.g. 'City', 'Dept.', first word if English) — keep Arabic only
+    s = re.sub(r"[A-Za-z][A-Za-z .\-]*", "", s)
+    s = re.sub(r"\s*,\s*", "، ", s)
+    return s.strip(" ،-")
+MODEL_AR = {"e36":"BMW E36","bmw":"BMW","civic":"Honda Civic","astra":"Opel Astra","vectra":"Opel Vectra","cruze":"Chevrolet Cruze","sonic":"Chevrolet Sonic","colt":"Mitsubishi Colt"}
+def normtitle(r):
+    mk=""; name=MODEL_AR.get((r.get("model_key") or "").lower())
+    yr = r.get("year") or ""
+    tr = str(r.get("transmission") or "").lower()
+    trar = "أوتوماتيك" if tr=="auto" else ("مانيوال" if tr=="manual" else "")
+    loc = arloc(r.get("location"))
+    bits = [x for x in [name, str(yr) if yr else "", trar if trar else ""] if x]
+    out = " ".join(bits)
+    if loc: out += f" — {loc}"
+    return out
+
+
+STATUS_AR = {"over_budget":"فوق الميزانية — مرجع سعر فقط","reference":"مرجع سعر فقط"}
+def status_chip(r):
+    st = (r.get("status") or "").strip().lower()
+    lbl = STATUS_AR.get(st)
+    return f'<div><span class="tag">{lbl}</span></div>' if lbl else ""
+
 def card(r):
     n = int(re.sub(r"[^0-9]", "", str(r.get("price") or 0)) or 0)
     cls_extra = " pick" if r.get("pick") else ""
@@ -52,7 +84,8 @@ def card(r):
     return (f'<div class="card{cls_extra}" data-make="{esc(make_of(r))}" data-model="{esc(r.get("model_key") or "")}" '
             f'data-source="{esc(r.get("platform") or "")}" data-seller="{esc(r.get("seller_name") or "")}" '
             f'data-price="{n}" data-desc="{esc(note[:120])}">'
-            f'<h4><bdi>{esc(r.get("title") or "")}</bdi> — <bdi class="price {band(n)}" dir="rtl">{price_txt}</bdi></h4>'
+            f'<h4><bdi>{normtitle(r)}</bdi> — <bdi class="price {band(n)}" dir="rtl">{price_txt}</bdi></h4>'
+            f"{status_chip(r)}"
             f'<div>{"".join(tags)}</div>{note_html}{contact_html(r)}'
             f'<a class="btn" href="{esc(r.get("url") or "#")}" target="_blank" rel="noopener">{esc(r.get("platform") or "المصدر")} ↗</a></div>')
 
